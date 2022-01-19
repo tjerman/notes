@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en-gb">
+  <head>
+    <title>Why you should overengineer your code (sometimes) // untitled</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.92.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomaž" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://tjerman.github.io/css/main.min.832e211720ead7403fbeca6b7b294294a25662e276d4d85b4a3c3d5decf89fcb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Why you should overengineer your code (sometimes)"/>
+<meta name="twitter:description" content="Let&rsquo;s firstly clarify what I mean by overengineering.
+I&rsquo;m not saying you should do things like use is-even or solve trivial math problems with more loops than you can count with your fingers&hellip; I am saying that you should only do it if you can&rsquo;t think of something better on the spot.
+This might sound strange at first, but hear me out, ok?
+To prove my point, let&rsquo;s use some diagrams to show the developer mental state during the development and maintenance phases."/>
+
+    <meta property="og:title" content="Why you should overengineer your code (sometimes)" />
+<meta property="og:description" content="Let&rsquo;s firstly clarify what I mean by overengineering.
+I&rsquo;m not saying you should do things like use is-even or solve trivial math problems with more loops than you can count with your fingers&hellip; I am saying that you should only do it if you can&rsquo;t think of something better on the spot.
+This might sound strange at first, but hear me out, ok?
+To prove my point, let&rsquo;s use some diagrams to show the developer mental state during the development and maintenance phases." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tjerman.github.io/posts/why-overengineering-is-good/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-19T18:35:59+01:00" />
+<meta property="article:modified_time" content="2022-01-19T18:35:59+01:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://tjerman.github.io"><img class="app-header-avatar" src="https://avatars.githubusercontent.com/u/12545711?v=4" alt="Tomaž" /></a>
+      <h1>untitled</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+      </nav>
+      <p>My notes on random dev things I decide to do</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/tjerman" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Why you should overengineer your code (sometimes)</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 19, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://tjerman.github.io/tags/development/">development</a>
+              <a class="tag" href="https://tjerman.github.io/tags/shower-thoughts/">shower-thoughts</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>Let&rsquo;s firstly clarify what I mean by overengineering.</p>
+<p>I&rsquo;m not saying you should do things like use <a href="https://www.npmjs.com/package/is-even">is-even</a> or solve <em>trivial</em> math problems with more loops than you can count with your fingers&hellip;
+I am saying that you should only do it if you can&rsquo;t think of something better on the spot.</p>
+<p>This might sound strange at first, but hear me out, ok?</p>
+<p>To prove my point, let&rsquo;s use some diagrams to show the developer mental state during the development and maintenance phases.</p>
+<p><strong>Baseline</strong>
+<img src="/why-overengineering-is-good/base.png" alt="Baseline" title="Baseline"></p>
+<p>The above diagram shows the baseline we&rsquo;ll be using.
+Above the middle line is the positive mental state &ndash; everything is working good, everyone is happy.
+Below the middle line is the negative mental state &ndash; stuff is breaking, and clients are on our tail.</p>
+<ul>
+<li>
+<p>Right at the top, we have the good&rsquo;ol <strong>god complex</strong> which makes us an absolute coding legend.</p>
+</li>
+<li>
+<p>In the middle, spanning slightly into the negative, we have the state you&rsquo;ll generally experience, the <strong>normal state</strong>.
+Things will be good, but stuff can go south.</p>
+</li>
+<li>
+<p>After that, we have a whole section dedicated to the initial phase of debugging&hellip; checking the git blame to see who caused the bug.
+If <strong>someone else</strong> is the author, let everyone know that your but is safe.
+If <strong>you&rsquo;re</strong> the commit author, it was probably because you were refactoring the code or use some other excuse you see fit.</p>
+</li>
+<li>
+<p>Right after that, spanning into the void.
+We realise that what we&rsquo;ve done should not have been done.
+We have a phase where we secretly commit patches to patch away the nasty stuff and hope no one notices.</p>
+</li>
+</ul>
+<p>Now then, diagrams for the two extreme cases &ndash; the noob developer and the professional noob developer.</p>
+<p><strong>Noob developer</strong>
+<img src="/why-overengineering-is-good/noob.png" alt="Noob developer" title="Noob developer"></p>
+<p>You thought of a banging new approach to solve the problem.
+You do some research find validation that the solution is the best.
+You start implementing.
+It works&hellip; kind of&hellip;
+There are some limitations the solution doesn&rsquo;t quite address&hellip;
+You find some janky copy-paste solution that fixes it.
+Phew, job well done, stuff works and the managers are happy.</p>
+<p>Then comes the maintenance phase, where you&rsquo;ll need to maintain your code because no one in your team knew it was possible to write such a&hellip; <em>masterpiece</em>.
+The problem is, not even you fully realise what you&rsquo;ve done.
+You think it will be easy, but you soon realise that you are indeed mistaken.</p>
+<p><strong>Pro developer</strong>
+<img src="/why-overengineering-is-good/pro.png" alt="Pro developer" title="Pro developer"></p>
+<p>Ah yes&hellip; modern problems require modern solutions.
+As more experienced you become, the more knowledgeable you are.
+You apply a good solution with theory behind it and&hellip; you find a library that does something close enough (use the &ldquo;limited by the technology of my time&rdquo; for things that are not supported).</p>
+<p>The maintenance couldn&rsquo;t be any simpler.
+You use the appropriate testing theories to pinpoint the exact issue, what we could do and&hellip; open up an issue on the library&rsquo;s github, asking for frequent updates until they fix it.</p>
+<h1 id="so-then-why-should-you-overengineer">So then&hellip; why should you overengineer?</h1>
+<p>Well&hellip; since you&rsquo;re starting out, your code is probably kinda bad &ndash; loop-galore, buggy code, and janky solutions, to name a few.</p>
+<p>When doing something foreign (learning to code, writing some new strange feature) it is usually more rewarding to just have it working &ndash; we can worry about making it look gooder while making it work less later.</p>
+<p>So with that logic, you should go all out and try to cram as much nonsense as humanly possible while keeping your code doing what it is supposed to do.</p>
+<h1 id="so-when-should-you-do-it">So&hellip; when should you do it?</h1>
+<p>I think you should consider doing these things when starting off with programming or when you&rsquo;re implementing something you&rsquo;ve never done before (or you just want to test your colleagues a bit)</p>
+<h1 id="possible-implications">Possible implications</h1>
+<blockquote>
+<p>&ldquo;I&rsquo;ll get chewed up by the code review, and my mentor will be upset with me&hellip;&rdquo;</p>
+</blockquote>
+<p>A code review is not considered valid by defacto standards unless the reviewer finds as many issues as humanly possible (petty issues, such as trailing whitespace, give extra points).</p>
+<p>Have a little vengeance and make them read through the entire code to properly understand it and suggest appropriate modifications.</p>
+<p>Who knows, it might even turn out that the overengineered solution was just enough overengineered.
+You might even make the reviewer have to do his own research to determine why your solution is not good.</p>
+<blockquote>
+<p>&ldquo;The codebase will be corrupt, the system will be unstable&hellip;&rdquo;</p>
+</blockquote>
+<p>And well thought out, well-tested code can&rsquo;t do the same?
+If your solution works and has appropriate testing behind it&hellip; consider it an easter egg and call it a day.</p>
+<blockquote>
+<p>&ldquo;The feature will be hard to extend with additional stuff we might not have thought of&hellip;&rdquo;</p>
+</blockquote>
+<p>Who cares! You&rsquo;ll probably need to do a lot of refactoring to make the feature fit in anyway.</p>
+<p>You might even do some refactoring to make the feature better since you&rsquo;ve learned new things from when you&rsquo;ve written the initial version.</p>
+<h1 id="and-how-should-you-do-it">And how should you do it?</h1>
+<p>While I think this is valid and can be quite valuable from the learning perspective (for both you and your colleagues), you shouldn&rsquo;t make it seem like you&rsquo;re trying to <em>sabotage</em> them.</p>
+<p>Let your team <em>(somehow) know</em> that this might not be the best solution for the problem.
+Add some <code>@todo</code>&rsquo;s and <code>@note</code>&rsquo;s to where you wish your reviewer to pay extra attention.</p>
+<p>Show them your code, let them flame you and tell you why something is not ok.
+Do you not agree with what they are telling you?
+Have a discussion about it; if you have arguments to back you up and they don&rsquo;t, you&rsquo;ll probably win.</p>
+<p>Do not try to hide the crappy code in a pile of other changes or bypass the review.
+This will make it go south in the long run.</p>
+<p>And whatever you do, do not tell them I&rsquo;ve sent you.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

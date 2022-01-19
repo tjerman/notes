@@ -6,14 +6,17 @@
     <description>Recent content on untitled</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 16 Jan 2022 18:35:59 +0100</lastBuildDate><atom:link href="https://tjerman.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jan 2022 18:35:59 +0100</lastBuildDate><atom:link href="https://tjerman.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>https://tjerman.github.io/posts/test/</link>
-      <pubDate>Sun, 16 Jan 2022 18:35:59 +0100</pubDate>
+      <title>Why you should overengineer your code (sometimes)</title>
+      <link>https://tjerman.github.io/posts/why-overengineering-is-good/</link>
+      <pubDate>Wed, 19 Jan 2022 18:35:59 +0100</pubDate>
       
-      <guid>https://tjerman.github.io/posts/test/</guid>
-      <description>Test Test</description>
+      <guid>https://tjerman.github.io/posts/why-overengineering-is-good/</guid>
+      <description>Let&amp;rsquo;s firstly clarify what I mean by overengineering.
+I&amp;rsquo;m not saying you should do things like use is-even or solve trivial math problems with more loops than you can count with your fingers&amp;hellip; I am saying that you should only do it if you can&amp;rsquo;t think of something better on the spot.
+This might sound strange at first, but hear me out, ok?
+To prove my point, let&amp;rsquo;s use some diagrams to show the developer mental state during the development and maintenance phases.</description>
     </item>
     
   </channel>
