@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en-gb">
+  <head>
+    <title>Building a simple money tracking mobile application with Corteza // untitled</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.92.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomaž" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://tjerman.github.io/css/main.min.832e211720ead7403fbeca6b7b294294a25662e276d4d85b4a3c3d5decf89fcb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Building a simple money tracking mobile application with Corteza"/>
+<meta name="twitter:description" content="This project is the result of my experimentation with mobile development. Do keep this in mind if you decide to follow my instructions to implement your mobile app. The concepts are there, but some Flutter related specifics may not be that by the book.
+The source code is available on GitHub/tjerman/money.
+What we will be building We&rsquo;ll build simple money tracking application that holds a list of transactions (inbound and outbound)."/>
+
+    <meta property="og:title" content="Building a simple money tracking mobile application with Corteza" />
+<meta property="og:description" content="This project is the result of my experimentation with mobile development. Do keep this in mind if you decide to follow my instructions to implement your mobile app. The concepts are there, but some Flutter related specifics may not be that by the book.
+The source code is available on GitHub/tjerman/money.
+What we will be building We&rsquo;ll build simple money tracking application that holds a list of transactions (inbound and outbound)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tjerman.github.io/posts/money/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-30T15:43:12+01:00" />
+<meta property="article:modified_time" content="2022-01-30T15:43:12+01:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://tjerman.github.io"><img class="app-header-avatar" src="https://avatars.githubusercontent.com/u/12545711?v=4" alt="Tomaž" /></a>
+      <h1>untitled</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+      </nav>
+      <p>My notes on random dev things I decide to do</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/tjerman" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Building a simple money tracking mobile application with Corteza</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 30, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          10 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://tjerman.github.io/tags/development/">development</a>
+              <a class="tag" href="https://tjerman.github.io/tags/flutter/">Flutter</a>
+              <a class="tag" href="https://tjerman.github.io/tags/corteza/">Corteza</a>
+              <a class="tag" href="https://tjerman.github.io/tags/afternoon-project/">afternoon-project</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>This project is the result of my experimentation with mobile development.
+Do keep this in mind if you decide to follow my instructions to implement your mobile app.
+The concepts are there, but some Flutter related specifics may not be that <em>by the book</em>.</p>
+<p>The source code is available on <a href="https://github.com/tjerman/money">GitHub/tjerman/money</a>.</p>
+<h1 id="what-we-will-be-building">What we will be building</h1>
+<p>We&rsquo;ll build simple money tracking application that holds a list of transactions (inbound and outbound).
+These transactions can be accessed and added from inside Corteza and displayed inside our mobile app.</p>
+<p>Here is a quick overview of what we&rsquo;ll do:</p>
+<ol>
+<li><strong>Setup Corteza</strong> to have an instance we can work with.
+We&rsquo;ll also need to do some magic to access our local instance from inside our mobile app.</li>
+<li><strong>Setup the Low Code app</strong> so that we&rsquo;ll be able to track our transactions.</li>
+<li><strong>Setup an auth client</strong> so that we&rsquo;ll be able to authenticate our mobile application</li>
+<li><strong>Develop the mobile application</strong></li>
+</ol>
+<h1 id="setup-corteza">Setup Corteza</h1>
+<p>Setting up a new Corteza instance is as easy as eating pie.
+All you need to do is <strong>create a project folder</strong> and <strong>paste in some config files</strong>.</p>
+<p>Refer to the <strong>File structure</strong> section to see what the entire file structure will look like.
+This is just to save a few minutes later on.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Additional DevOps and deploy related documentation is available in the <a href="https://docs.cortezaproject.org/corteza-docs/2021.9/devops-guide/index.html">official documentation</a>.</p>
+</blockquote>
+<p>In the project repository (my Corteza configs reside inside the <code>/backend</code> root directory), we need two config files &ndash; <code>/backend/.env</code> and <code>/backend/docker-compose.yaml</code>.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Pay attention to the <code>DOMAIN</code> variable; we&rsquo;ll be using a little trick so we can access our local Corteza from our mobile app.</p>
+</blockquote>
+<p>Here is an example of the <code>/backend/.env</code>:</p>
+<pre tabindex="0"><code>DOMAIN=somethingsomething.ngrok.io
+VERSION=2021.9.6
+
+# Just so we can use qwerty as my password
+AUTH_PASSWORD_SECURITY=false
+
+DB_DSN=corteza:corteza@tcp(db:3306)/corteza?collation=utf8mb4_general_ci
+
+# So we can use a single container
+HTTP_WEBAPP_ENABLED=true
+ACTIONLOG_ENABLED=false
+
+</code></pre><p>Here is an example of the <code>/backend/docker-compose.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.5&#39;</span>
+
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">server</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">cortezaproject/corteza:${VERSION}</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">env_file</span>: [ <span style="color:#ae81ff">.env ]</span>
+    <span style="color:#f92672">depends_on</span>: [ <span style="color:#ae81ff">db ]</span>
+    <span style="color:#f92672">ports</span>: [ <span style="color:#e6db74">&#34;127.0.0.1:18080:80&#34;</span> ]
+
+  <span style="color:#f92672">db</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">percona:8.0</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">volumes</span>: 
+      - <span style="color:#e6db74">&#34;dbdata:/var/lib/mysql&#34;</span>
+    <span style="color:#f92672">environment</span>:
+      <span style="color:#f92672">MYSQL_DATABASE</span>: <span style="color:#ae81ff">corteza</span>
+      <span style="color:#f92672">MYSQL_USER</span>:     <span style="color:#ae81ff">corteza</span>
+      <span style="color:#f92672">MYSQL_PASSWORD</span>: <span style="color:#ae81ff">corteza</span>
+      <span style="color:#f92672">MYSQL_RANDOM_ROOT_PASSWORD</span>: <span style="color:#ae81ff">random</span>
+
+    <span style="color:#f92672">healthcheck</span>: { <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD&#34;</span>, <span style="color:#e6db74">&#34;mysqladmin&#34;</span> ,<span style="color:#e6db74">&#34;ping&#34;</span>, <span style="color:#e6db74">&#34;-h&#34;</span>, <span style="color:#e6db74">&#34;localhost&#34;</span><span style="color:#f92672">], timeout: 20s, retries</span>: <span style="color:#ae81ff">10</span> }
+
+<span style="color:#f92672">volumes</span>:
+  <span style="color:#f92672">dbdata</span>:
+
+</code></pre></div><p>Start Corteaz by running <code>docker-compose up -d' in the project directory inside </code>/backend<code>. You can check if everything is ok by running </code>docker-compose ps` in the same directory.</p>
+<pre tabindex="0"><code>▶ docker-compose ps
+      Name                    Command                  State                Ports         
+------------------------------------------------------------------------------------------
+backend_db_1       /docker-entrypoint.sh mysqld     Up (healthy)   3306/tcp, 33060/tcp    
+backend_server_1   ./bin/corteza-server serve-api   Up (healthy)   127.0.0.1:18080-&gt;80/tcp
+</code></pre><h1 id="expose-corteza-to-the-internet">Expose Corteza to the internet</h1>
+<p>If you don&rsquo;t have your server, you&rsquo;ll need to make somehow Corteza accessible from the internet.
+I&rsquo;ll be using <a href="https://ngrok.com/">ngrok</a>, but you are free to use whatever you wish.</p>
+<p>If you&rsquo;re using ngrok, run  <code>ngrok http 18080</code>.
+Navigate to the tunnel URL to see if everything works as expected.</p>
+<blockquote>
+<p><strong>TIP:</strong> You can use <a href="https://www.planetcrust.com/price/cloud/">Planet Crust cloud</a> to setup a Corteza instance.
+<strong>Disclosure</strong> I am a core Corteza contributor, and I work with Planet Crust.</p>
+</blockquote>
+<h1 id="setup-the-low-code-app">Setup the Low Code app</h1>
+<p>After deploying our Corteza instance, we need to create a Low Code app.
+We&rsquo;ll need to create a <strong>namespace</strong>, <strong>a module</strong>, and a <strong>page</strong>.</p>
+<p>Detailed instructions on Low Code configuration are available in the <a href="https://docs.cortezaproject.org/corteza-docs/2021.9/integrator-guide/compose-configuration/index.html">official documentation</a>.</p>
+<blockquote>
+<p><strong>TIP:</strong> The resulting configuration is available <a href="/money/money.zip">here</a>.
+Refer to the <a href="https://docs.cortezaproject.org/corteza-docs/2021.9/integrator-guide/compose-configuration/import-export.html">official documentation</a> on how you can import/export namespaces.</p>
+</blockquote>
+<p>To create the namespace, navigate to the Low Code application</p>
+<p><img src="/money/app-selector-compose.png" alt="Screenshot"></p>
+<p>click on the &ldquo;create a new namespace&rdquo; button</p>
+<p><img src="/money/namespaces.png" alt="Screenshot"></p>
+<p>fill in the information and click on &ldquo;save and close&rdquo;</p>
+<p><img src="/money/namespace-create.png" alt="Screenshot"></p>
+<p>Next, open up the namespace</p>
+<p><img src="/money/namespace-created.png" alt="Screenshot"></p>
+<p>navigate to the admin panel.</p>
+<p><img src="/money/namespace-empty.png" alt="Screenshot"></p>
+<p>In the admin panel, navigate to &ldquo;modules&rdquo;, and click on the &ldquo;new module&rdquo; button</p>
+<p><img src="/money/module-list.png" alt="Screenshot"></p>
+<p>define the module and click on &ldquo;save&rdquo;.</p>
+<p><img src="/money/module-create.png" alt="Screenshot"></p>
+<p>Click on the &ldquo;create record page&rdquo; so that we&rsquo;ll be able to interact with the module (create and edit transactions).</p>
+<p><img src="/money/module-create-rp.png" alt="Screenshot"></p>
+<p>We&rsquo;ll use the default record page configuration for now, so click on the &ldquo;save and close&rdquo; button (we can get back and change it later on).</p>
+<p><img src="/money/transaction-record-page.png" alt="Screenshot"></p>
+<p>Lastly, we need to define our home page to access our logged transactions.
+In the side navigation, click on &ldquo;pages&rdquo;, fill out the page title and click on the &ldquo;create page&rdquo; button.</p>
+<p><img src="/money/page-list.png" alt="Screenshot"></p>
+<p>Open the page builder for the home page and add a simple record list to show the list of logged transactions.
+Once finished, click on the &ldquo;save and close&rdquo; button.</p>
+<p><img src="/money/homepage.png" alt="Screenshot"></p>
+<p>Navigate to the home page and add a few transactions to have something to work with.</p>
+<p><img src="/money/transaction-records.png" alt="Screenshot"></p>
+<h1 id="setup-an-auth-client">Setup an auth client</h1>
+<p>Corteza uses OAuth2 for authentication, which requires us to define an auth client first and then initialize the OAuth2 flow from inside the mobile application.</p>
+<p>Refer to the <a href="https://docs.cortezaproject.org/corteza-docs/2021.9/administrator-guide/authentication/index.html">official documentation</a> for notes on auth clients.</p>
+<p>To create an auth client, navigate to the admin area application</p>
+<p><img src="/money/app-selector-admin.png" alt="Screenshot"></p>
+<p>navigate to the auth clients sub-page and click on &ldquo;new&rdquo;.</p>
+<p><img src="/money/auth-client-list.png" alt="Screenshot"></p>
+<p>Fill in the information and click on the &ldquo;submit&rdquo; button.</p>
+<p>You can leave most things on the default value, but make sure to fill in the redirect URI, select the &ldquo;grant type = authorization_code&rdquo;, and tick all of those checkboxes.</p>
+<p>The redirect URI value doesn&rsquo;t matter; use my value (<code>com.tjerman.money</code>) and adjust it to fit your mobile application.</p>
+<p><img src="/money/auth-client-create.png" alt="Screenshot"></p>
+<h1 id="flutter-boilerplate">Flutter boilerplate</h1>
+<h2 id="create-the-app">Create the app</h2>
+<p>Run <code>flutter create --org com.tjerman money</code> to create your flutter app.
+Make sure to adjust the org to match the value you used for the redirect URI.</p>
+<h2 id="file-structure">File structure</h2>
+<p>This is the file structure I decided on using for this project:</p>
+<ul>
+<li><code>/backend</code> contains my Corteza configuration files discussed in the <strong>Setup Corteza</strong> section,</li>
+<li><code>/models</code> contains all of the class definitions for things we&rsquo;ll use through the application,</li>
+<li><code>/screens</code> contains all of the screens defined in the application,</li>
+<li><code>/utilities</code> contains all of the generic utility code such as an API client and a state manager,</li>
+<li><code>/widgets</code> contains all of the widget definitions our screens will be using.</li>
+</ul>
+<h2 id="packages">Packages</h2>
+<p>These are the packages I have defined; they are defined in <code>/pubspec.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">dependencies</span>:
+  <span style="color:#f92672">flutter</span>:
+    <span style="color:#f92672">sdk</span>: <span style="color:#ae81ff">flutter</span>
+
+  <span style="color:#f92672">http</span>: <span style="color:#ae81ff">^0.12.1</span> <span style="color:#75715e"># So I can make HTTP stuff for accessing Corteza API</span>
+  <span style="color:#f92672">flutter_appauth</span>: <span style="color:#ae81ff">^0.9.1</span> <span style="color:#75715e"># To implement authentication</span>
+  <span style="color:#f92672">cupertino_icons</span>: <span style="color:#ae81ff">^1.0.2</span>
+  <span style="color:#f92672">flutter_spinkit</span>: <span style="color:#ae81ff">^5.1.0</span> <span style="color:#75715e"># To have spinners that indicate loading</span>
+  <span style="color:#f92672">flutter_dotenv</span>: <span style="color:#ae81ff">^5.0.2</span> <span style="color:#75715e"># To access the vars defined in the .env file</span>
+</code></pre></div><h2 id="assets">Assets</h2>
+<p>For now, the only asset we&rsquo;ll need is the <code>.env</code> file, so that gets defined in the <code>/pubspec.yaml</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">flutter</span>:
+  <span style="color:#75715e"># ...</span>
+  <span style="color:#f92672">assets</span>:
+    - <span style="color:#ae81ff">.env</span>
+  <span style="color:#75715e"># ...</span>
+</code></pre></div><h2 id="android-specific-configuration">Android-specific configuration</h2>
+<p>We need to set <code>appAuthRedirectScheme</code> for the OAuth2 flow.
+This goes in the <code>/android/app/build.gradle</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">android <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    defaultConfig <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// We need to change the minSDK version for the auth stuff
+</span><span style="color:#75715e"></span>        minSdkVersion <span style="color:#ae81ff">18</span>
+        <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>        manifestPlaceholders <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
+            <span style="color:#75715e">// Don&#39;t forget to change it to the value you&#39;ve used elsewhere
+</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;appAuthRedirectScheme&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;com.tjerman.money&#39;</span>
+        <span style="color:#f92672">]</span>
+        <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><h1 id="mobile-app">Mobile app</h1>
+<p>This is the plan:</p>
+<ol>
+<li>We need to have a login page that will do the OAuth2 flow with Corteza.</li>
+<li>We need to save the credentials and make them available to the rest of the application.</li>
+<li>We need to define a TL;DR screen to show some basic bits, such as a list of transactions and a nice welcome message.</li>
+</ol>
+<p>The entire source code is available in the <a href="https://github.com/tjerman/money">GitHub repository</a>, so we won&rsquo;t go too much into details.
+Here is the gist of it.</p>
+<h2 id="login-screen">Login screen</h2>
+<p>To implement the login, we need to do a few things:</p>
+<ol>
+<li>Prepare a new screen <code>/screens/LoginScreen.dart</code></li>
+<li>define a new <code>/login</code> route inside <code>main.dart</code></li>
+<li>define a little home-brew state class inside <code>utilities/State.dart</code></li>
+<li>implement the OAuth2 flow inside the login screen (<code>/screens/LoginScreen.dart</code>)</li>
+</ol>
+<p>We will use our little home-brew state to keep our tokens available for use.
+In an actual application, you would use a state manager or the local file system to persist them through restarts.</p>
+<p>Our state class looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#75715e">// This is all we&#39;ll need for now; we can extend it later down the line
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppState</span> {
+  <span style="color:#66d9ef">String</span> accessToken <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+  <span style="color:#66d9ef">String</span> refreshToken <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+  <span style="color:#66d9ef">String</span> userID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+}
+
+<span style="color:#75715e">// Prepare a global singleton just so that we can access it from where ever we wish
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> state <span style="color:#f92672">=</span> AppState();
+
+</code></pre></div><p>Then to implement the OAuth2 flow, inside <code>/screens/LoginScreen.dart</code>, all we need to do is initialize <code>FlutterAppAuth</code> and call the <code>authorizeAndExchangeCode</code> method on it</p>
+<p>Login related configs are defined in the <code>.env</code> file; these are the options:</p>
+<ul>
+<li><code>DOMAIN</code> is the value you&rsquo;ve defined for your Flutter app (for example, <code>com.tjerman.money</code>).</li>
+<li><code>AUTH_CLIENT_ID</code> is the auth client ID obtained from the admin panel.
+The auth client ID is the long number in the URL (for example, <code>266991625534701571</code>).</li>
+<li><code>AUTH_CLIENT_SECRET</code> is the secret value obtained in the auth client in the admin panel.</li>
+<li><code>AUTH_REDIRECT_URL</code> the value tells where Corteza should redirect after the auth is completed.
+The value has to match the one defined in the auth client.</li>
+<li><code>API_DOMAIN</code> the value defines where Corteza API is located.</li>
+</ul>
+<h2 id="tldr-screen">TL;DR screen</h2>
+<p>To implement the TL;DR screen, we need to do a few things:</p>
+<ol>
+<li>Prepare a new screen <code>/screens/TLDRScreen.dart</code></li>
+<li>define a new <code>/tldr</code> route inside <code>main.dart</code></li>
+<li>define a Corteza SDK inside <code>/utilities/CortezaSDK.dart</code></li>
+<li>prepare a widget to show basic user info</li>
+<li>prepare a widget to show a list of transactions</li>
+</ol>
+<h3 id="corteza-sdk">Corteza SDK</h3>
+<p>We will prepare a little SDK to handle API requests and prepare typed responses to make our life easier.</p>
+<p>Since we only need a few methods, I decided to write them down by hand.
+If I&rsquo;d need something larger, I would consider <a href="https://github.com/cortezaproject/corteza-js/blob/2022.3.x/tools/codegen/corteza-api-client.js">generating the code the same way we do for Node.js</a>.</p>
+<p>If we glance over the SDK:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">CortezaSDK csdk <span style="color:#f92672">=</span> CortezaSDK(dotenv.env[<span style="color:#e6db74">&#39;API_DOMAIN&#39;</span>]<span style="color:#f92672">!</span>);
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CortezaSDK</span> {
+  <span style="color:#75715e">// Hold base Corteza API url so we don&#39;t need to provide it every time.
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// The value won&#39;t change so we don&#39;t need to have it dynamic.
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">String</span> _baseURL;
+  CortezaSDK(<span style="color:#66d9ef">this</span>._baseURL);
+
+  <span style="color:#75715e">// A method to construct the URL to fetch the user
+</span><span style="color:#75715e"></span>  Uri userURL(<span style="color:#66d9ef">String</span> userID) {
+    <span style="color:#66d9ef">return</span> Uri.parse(<span style="color:#e6db74">&#34;https://</span><span style="color:#e6db74">$</span>_baseURL<span style="color:#e6db74">/api/system/users/</span><span style="color:#e6db74">$</span>userID<span style="color:#e6db74">&#34;</span>);
+  }
+
+  <span style="color:#75715e">// A method to fetch the user and return a structured response
+</span><span style="color:#75715e"></span>  Future<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> fetchUser() <span style="color:#66d9ef">async</span> {
+    <span style="color:#66d9ef">var</span> raw <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> http.<span style="color:#66d9ef">get</span>(
+      userURL(
+        state.userID,
+      ),
+      headers: baseHeaders(),
+    );
+
+    <span style="color:#66d9ef">var</span> response <span style="color:#f92672">=</span> parseResponse(raw);
+
+    <span style="color:#66d9ef">return</span> User(
+      response[<span style="color:#e6db74">&#39;email&#39;</span>]<span style="color:#f92672">!</span>, 
+      response[<span style="color:#e6db74">&#39;username&#39;</span>]<span style="color:#f92672">!</span>, 
+      response[<span style="color:#e6db74">&#39;handle&#39;</span>]<span style="color:#f92672">!</span>, 
+      response[<span style="color:#e6db74">&#39;name&#39;</span>]<span style="color:#f92672">!</span>,
+    );
+  }
+
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>You can apply the same pattern for the other operations your SDK should do.
+I then make a global singleton (<code>csdk</code>) to access these methods from anywhere easily.</p>
+<p>If you&rsquo;re making an alternative application to the native Corteza web application, the SDK should implement the primitive operations, such as listing records, creating users, and rendering templates.</p>
+<p>If you&rsquo;re making an application that uses Corteza as a back-end you can implement the operations your application needs (what we&rsquo;ve done here).</p>
+<p>In regards to the <code>.env</code> we need the following variables:</p>
+<ul>
+<li><code>API_DOMAIN</code> the value defines where Corteza API is located.</li>
+<li><code>COMPOSE_NAMESPACE_ID</code> the value defines the namespace ID of our Low Code app</li>
+<li><code>COMPOSE_MODULE_TRANSACTION_ID</code> the value defines the module ID of where we store the transactions.</li>
+</ul>
+<blockquote>
+<p><strong>TIP:</strong> Defining things like moduleID and namespaceID inside the <code>.env</code> might be a little lame for larger projects.
+We usually define a helper to construct an index of available modules, which we can then reference by the handle.
+Depending on the application, the latter approach could be better.</p>
+</blockquote>
+<h3 id="tldr-screen-1">TL;DR screen</h3>
+<p>The screen is defined in the <code>screens/TLDRScreen.dart</code> file, which defines the base layout, invokes the SDK to fetch the data, and shows the data in the widgets.</p>
+<p>We have two widgets:</p>
+<ul>
+<li><code>/widgets/Profile.dart</code> to show the user info, such as the profile picture and a welcome message, and</li>
+<li><code>/widgets/Transactions.dart</code> to show the list of registered transactions.</li>
+</ul>
+<p>The TL;DR screen uses <code>FutureBuilders</code> to allow async data fetch to show the UI before the data is actually obtained.</p>
+<h1 id="the-result">The result</h1>
+<p>This is what the resulting mobile application looks like.</p>
+<p>When the application starts, we are prompted to log in through Corteza.
+You enter your login credentials and tap on login.</p>
+<img src="/money/mobile-login.jpg" style="max-height: 500px" />
+<p>After the login is successful, you are redirected to the TL;DR screen, where we can see our basic user info as well as the transactions we created earlier</p>
+<img src="/money/mobile-tldr.jpg" style="max-height: 500px" />
+<h1 id="todo">TODO</h1>
+<p>This was just a weekend afternoon project to get a taste of Flutter and mobile development.</p>
+<p>Here are a few improvements I can see:</p>
+<ul>
+<li><strong>Error handling</strong>: I didn&rsquo;t do much error handling, so some errors would crash the whole application.
+Errors should be handled appropriately, logged, and displayed to the user.</li>
+<li><strong>Live data</strong>: Currently, data won&rsquo;t get automatically refreshed if it is changed in Corteza.
+Corteza currently doesn&rsquo;t provide WebSockets to indicate changes, so we could do some pooling until we implement it.</li>
+<li><strong>Send notifications</strong>: We could add email or push notifications to notify users about special events.</li>
+<li><strong>Option to log transactions</strong>: We could add an input inside the mobile application to add new transactions.</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

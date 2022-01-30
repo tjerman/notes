@@ -6,7 +6,18 @@
     <description>Recent content on untitled</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sat, 29 Jan 2022 13:44:22 +0100</lastBuildDate><atom:link href="https://tjerman.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Jan 2022 15:43:12 +0100</lastBuildDate><atom:link href="https://tjerman.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a simple money tracking mobile application with Corteza</title>
+      <link>https://tjerman.github.io/posts/money/</link>
+      <pubDate>Sun, 30 Jan 2022 15:43:12 +0100</pubDate>
+      
+      <guid>https://tjerman.github.io/posts/money/</guid>
+      <description>This project is the result of my experimentation with mobile development. Do keep this in mind if you decide to follow my instructions to implement your mobile app. The concepts are there, but some Flutter related specifics may not be that by the book.
+The source code is available on GitHub/tjerman/money.
+What we will be building We&amp;rsquo;ll build simple money tracking application that holds a list of transactions (inbound and outbound).</description>
+    </item>
+    
     <item>
       <title>How to make writing stuff easy</title>
       <link>https://tjerman.github.io/posts/how-to-make-writing-ez/</link>
