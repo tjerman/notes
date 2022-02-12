@@ -6,7 +6,19 @@
     <description>Recent content in Posts on untitled</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 30 Jan 2022 15:43:12 +0100</lastBuildDate><atom:link href="https://tjerman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Feb 2022 16:28:49 +0100</lastBuildDate><atom:link href="https://tjerman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving our money tracking back-end to the cloud</title>
+      <link>https://tjerman.github.io/posts/money-planet-crust/</link>
+      <pubDate>Sat, 12 Feb 2022 16:28:49 +0100</pubDate>
+      
+      <guid>https://tjerman.github.io/posts/money-planet-crust/</guid>
+      <description>This project is the result of my experimentation with mobile development. Do keep this in mind if you decide to follow my instructions to implement your mobile app. The concepts are there, but some Flutter related specifics may not be that by the book.
+The source code is available on GitHub/tjerman/money.
+Moving to Planet Crust Disclosure I am a core Corteza contributor, and I work with Planet Crust.
+To move to Planet Crust we firstly need to create an account.</description>
+    </item>
+    
     <item>
       <title>Building a simple money tracking mobile application with Corteza</title>
       <link>https://tjerman.github.io/posts/money/</link>
